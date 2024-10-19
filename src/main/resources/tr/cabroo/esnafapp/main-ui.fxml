@@ -7,8 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tr.cabroo.esnafapp.MainController">
    <children>
@@ -19,17 +17,12 @@
                   <Label fx:id="appname_label" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="EsnafApp" HBox.hgrow="SOMETIMES" />
                   <Button fx:id="minimize_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#minimizeApp">
                      <graphic>
-                        <FontIcon iconLiteral="fth-minimize-2" />
                      </graphic>
                   </Button>
-                  <Button fx:id="close_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#closeApp">
-                     <graphic>
-                        <FontIcon iconLiteral="fth-x" />
-                     </graphic>
-                  </Button>
+                  <Button fx:id="close_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#closeApp" />
                </children>
             </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="75.0">
+            <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" spacing="5.0">
                <children>
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" HBox.hgrow="ALWAYS" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" HBox.hgrow="ALWAYS" />
