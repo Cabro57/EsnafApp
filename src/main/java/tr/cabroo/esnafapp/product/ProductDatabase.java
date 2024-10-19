@@ -1,6 +1,5 @@
 package tr.cabroo.esnafapp.product;
 
-import tr.cabroo.esnafapp.customer.Customer;
 import tr.cabroo.esnafapp.database.DatabaseManager;
 
 import java.sql.PreparedStatement;
@@ -27,7 +26,9 @@ public class ProductDatabase extends DatabaseManager {
         try {
             login();
             Statement statement = this.connect.createStatement();
+
             statement.execute(sql);
+
             statement.close();
             close();
         } catch (SQLException e) {
@@ -51,6 +52,8 @@ public class ProductDatabase extends DatabaseManager {
             preparedStatement.setFloat(8, product.getSalePrice());
 
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
             close();
         } catch (SQLException e) {
             System.out.println("Oops, Bu bir sorun: " + e);
@@ -78,6 +81,8 @@ public class ProductDatabase extends DatabaseManager {
 
                 product = new Product(id, barcode, name, brand, unit, stock, purchase_price, sale_price);
             }
+
+            preparedStatement.close();
             close();
         } catch (SQLException e) {
             System.out.println("Oops, Bu bir sorun: " + e);
@@ -109,6 +114,8 @@ public class ProductDatabase extends DatabaseManager {
 
                 products.add(product);
             }
+
+            statement.close();
             close();
         } catch (SQLException e) {
             System.out.println("Oops, Bu bir hata: " + e);
@@ -117,7 +124,7 @@ public class ProductDatabase extends DatabaseManager {
         return products;
     }
 
-    public void update(Customer customer) {
+    public void update(Product product) {
         String updateSql = "UPDATE Product SET barcode = ?, name = ?, brand = ?, unit = ?, stock = ?, purchase_margin = ?, sale_price = ? WHERE id = ?";
 
         try {
@@ -134,9 +141,45 @@ public class ProductDatabase extends DatabaseManager {
             preparedStatement.setInt(8, product.getID());
 
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
             close();
         } catch (SQLException e) {
             System.out.println("Oops, Bu bir sorun: " + e);
+        }
+    }
+
+    public void delete(int id) {
+        String deleteSql = "DELETE FROM Product WHERE id = ?";
+
+        try {
+            login();
+            PreparedStatement preparedStatement = this.connect.prepareStatement(deleteSql);
+
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            close();
+        } catch (Exception e) {
+            System.out.println("Oops, Bu bir hata: " + e);
+        }
+    }
+
+    public void deleteAll() {
+        String deleteSql = "DELETE FROM Product";
+
+        try {
+            login();
+            PreparedStatement preparedStatement = this.connect.prepareStatement(deleteSql);
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            close();
+        } catch (Exception e) {
+            System.out.println("Oops, Bu bir hata: " + e);
         }
     }
 }

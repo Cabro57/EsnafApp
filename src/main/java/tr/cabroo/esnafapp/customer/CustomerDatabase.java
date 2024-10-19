@@ -131,4 +131,38 @@ public class CustomerDatabase extends DatabaseManager {
             System.out.println("Oops, Bu bir sorun: " + e);
         }
     }
+
+    public void delete(int id) {
+        String deleteSql = "DELETE FROM Customer WHERE id = ?";
+
+        try {
+            login();
+            PreparedStatement preparedStatement = this.connect.prepareStatement(deleteSql);
+
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            close();
+        } catch (Exception e) {
+            System.out.println("Oops, Bu bir hata: " + e);
+        }
+    }
+
+    public void deleteAll() {
+        String deleteSql = "DELETE FROM Customer";
+
+        try {
+            login();
+            PreparedStatement preparedStatement = this.connect.prepareStatement(deleteSql);
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            close();
+        } catch (Exception e) {
+            System.out.println("Oops, Bu bir hata: " + e);
+        }
+    }
 }
