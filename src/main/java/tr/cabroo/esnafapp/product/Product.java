@@ -2,37 +2,35 @@ package tr.cabroo.esnafapp.product;
 
 public class Product {
     int ID;
-    String Code;
+    String Barcode;
     String Name;
     String Brand;
-    String Units;
+    String Unit;
     int Stock;
-    float ProfitMargin;
     float PurchasePrice;
     float SalePrice;
 
-    public Product(int ID, String code, String name, String brand, String units, int stock, float profitMargin, float purchasePrice, float salePrice) {
+    public Product(int ID, String barcode, String name, String brand, String unit, int stock, float purchasePrice, float salePrice) {
         this.ID = ID;
-        Code = code;
-        Name = name;
-        Brand = brand;
-        Units = units;
-        Stock = stock;
-        ProfitMargin = profitMargin;
-        PurchasePrice = purchasePrice;
-        SalePrice = salePrice;
+        this.Barcode = barcode;
+        this.Name = name;
+        this.Brand = brand;
+        this.Unit = unit;
+        this.Stock = stock;
+        this.PurchasePrice = purchasePrice;
+        this.SalePrice = salePrice;
     }
 
     public int getID() {
         return ID;
     }
 
-    public String getCode() {
-        return Code;
+    public String getBarcode() {
+        return Barcode;
     }
 
-    public void setCode(String code) {
-        Code = code;
+    public void setBarcode(String barcode) {
+        this.Barcode = barcode;
     }
 
     public String getName() {
@@ -40,7 +38,7 @@ public class Product {
     }
 
     public void setName(String name) {
-        Name = name;
+        this.Name = name;
     }
 
     public String getBrand() {
@@ -48,15 +46,15 @@ public class Product {
     }
 
     public void setBrand(String brand) {
-        Brand = brand;
+        this.Brand = brand;
     }
 
-    public String getUnits() {
-        return Units;
+    public String getUnit() {
+        return Unit;
     }
 
-    public void setUnits(String units) {
-        Units = units;
+    public void setUnit(String unit) {
+        this.Unit = unit;
     }
 
     public int getStock() {
@@ -64,15 +62,7 @@ public class Product {
     }
 
     public void setStock(int stock) {
-        Stock = stock;
-    }
-
-    public float getProfitMargin() {
-        return ProfitMargin;
-    }
-
-    public void setProfitMargin(float profitMargin) {
-        ProfitMargin = profitMargin;
+        this.Stock = stock;
     }
 
     public float getPurchasePrice() {
@@ -80,7 +70,7 @@ public class Product {
     }
 
     public void setPurchasePrice(float purchasePrice) {
-        PurchasePrice = purchasePrice;
+        this.PurchasePrice = purchasePrice;
     }
 
     public float getSalePrice() {
@@ -88,6 +78,6 @@ public class Product {
     }
 
     public void setSalePrice(float salePrice) {
-        SalePrice = salePrice;
+        this.SalePrice = salePrice;
     }
 }

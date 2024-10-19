@@ -13,6 +13,7 @@ public class CustomerDatabase extends DatabaseManager {
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + " name TEXT NOT NULL,"
                 + " surname TEXT NOT NULL,"
+                + " phone_number TEXT NOT NULL"
                 + " address TEXT NOT NULL,"
                 + " debit INTEGER NOT NULL"
                 + ");";
@@ -28,7 +29,7 @@ public class CustomerDatabase extends DatabaseManager {
     }
 
     public void save(Customer customer) {
-        String insertSql = "INSERT INTO Customer(name, surname, address, debit) VALUES(?, ?, ?, ?)";
+        String insertSql = "INSERT INTO Customer(name, surname, phone_number, address, debit) VALUES(?, ?, ?, ?, ?)";
 
         try {
             login();
@@ -36,10 +37,13 @@ public class CustomerDatabase extends DatabaseManager {
 
             preparedStatement.setString(1, customer.getName());
             preparedStatement.setString(2, customer.getSurname());
-            preparedStatement.setString(3, customer.getAddress());
-            preparedStatement.setInt(4, customer.getDebit());
+            preparedStatement.setString(3, customer.getPhoneNumber());
+            preparedStatement.setString(4, customer.getAddress());
+            preparedStatement.setInt(5, customer.getDebit());
 
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
             close();
         } catch (SQLException e) {
             System.out.println("Oops, Bu bir sorun: " + e);
@@ -59,11 +63,14 @@ public class CustomerDatabase extends DatabaseManager {
                 id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
+                String phoneNumber = resultSet.getString("phone_number");
                 String address = resultSet.getString("address");
                 int debit = resultSet.getInt("debit");
 
-                customer = new Customer(id, name, surname, address, debit);
+                customer = new Customer(id, name, surname, phoneNumber, address, debit);
             }
+
+            preparedStatement.close();
             close();
         } catch (SQLException e) {
             System.out.println("Oops, Bu bir sorun: " + e);
@@ -85,13 +92,15 @@ public class CustomerDatabase extends DatabaseManager {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
+                String phoneNumber = resultSet.getString("phone_number");
                 String address = resultSet.getString("address");
                 int debit = resultSet.getInt("debit");
 
-                customer = new Customer(id, name, surname, address, debit);
+                customer = new Customer(id, name, surname, phoneNumber, address, debit);
 
                 customers.add(customer);
             }
+            statement.close();
             close();
         } catch (SQLException e) {
             System.out.println("Oops, Bu bir hata: " + e);
@@ -101,7 +110,7 @@ public class CustomerDatabase extends DatabaseManager {
     }
 
     public void update(Customer customer) {
-        String updateSql = "UPDATE Customer SET name = ?, surname = ?, address = ?, debit = ? WHERE id = ?";
+        String updateSql = "UPDATE Customer SET name = ?, surname = ?, phone_number = ?, address = ?, debit = ? WHERE id = ?";
 
         try {
             login();
@@ -109,11 +118,14 @@ public class CustomerDatabase extends DatabaseManager {
 
             preparedStatement.setString(1, customer.getName());
             preparedStatement.setString(2, customer.getSurname());
-            preparedStatement.setString(3, customer.getAddress());
-            preparedStatement.setInt(4, customer.getDebit());
-            preparedStatement.setInt(5, customer.getID());
+            preparedStatement.setString(3, customer.getPhoneNumber());
+            preparedStatement.setString(4, customer.getAddress());
+            preparedStatement.setInt(5, customer.getDebit());
+            preparedStatement.setInt(6, customer.getID());
 
             preparedStatement.executeUpdate();
+
+            preparedStatement.close();
             close();
         } catch (SQLException e) {
             System.out.println("Oops, Bu bir sorun: " + e);

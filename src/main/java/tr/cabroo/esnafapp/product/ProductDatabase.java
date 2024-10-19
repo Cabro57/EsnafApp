@@ -15,12 +15,11 @@ public class ProductDatabase extends DatabaseManager {
     public ProductDatabase() {
         String sql = "CREATE TABLE IF NOT EXISTS Product ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + " code TEXT NOT NULL,"
+                + " barcode TEXT NOT NULL,"
                 + " name TEXT NOT NULL,"
                 + " brand TEXT NOT NULL,"
-                + " units TEXT NOT NULL"
+                + " unit TEXT NOT NULL"
                 + " stock INTEGER NOT NULL"
-                + " profit_margin FLOAT NOT NULL"
                 + " purchase_price FLOAT NOT NULL"
                 + " sale_price FLOAT NOT NULL"
                 + ");";
@@ -29,6 +28,7 @@ public class ProductDatabase extends DatabaseManager {
             login();
             Statement statement = this.connect.createStatement();
             statement.execute(sql);
+            statement.close();
             close();
         } catch (SQLException e) {
             System.out.println("Oops, Bu bir hata: " + e);
@@ -36,18 +36,17 @@ public class ProductDatabase extends DatabaseManager {
     }
 
     public void save(Product product) {
-        String insertSql = "INSERT INTO Customer(code, name, brand, stock, profit_margin, purchase_price, sale_price) VALUES(?, ?, ?, ?)";
+        String insertSql = "INSERT INTO Customer(barcode, name, brand, unit, stock, purchase_price, sale_price) VALUES(?, ?, ?, ?, ?, ? ,?)";
 
         try {
             login();
             PreparedStatement preparedStatement = this.connect.prepareStatement(insertSql);
 
-            preparedStatement.setString(1, product.getCode());
+            preparedStatement.setString(1, product.getBarcode());
             preparedStatement.setString(2, product.getName());
             preparedStatement.setString(3, product.getBrand());
-            preparedStatement.setString(4, product.getUnits());
+            preparedStatement.setString(4, product.getUnit());
             preparedStatement.setInt(5, product.getStock());
-            preparedStatement.setFloat(6, product.getProfitMargin());
             preparedStatement.setFloat(7, product.getPurchasePrice());
             preparedStatement.setFloat(8, product.getSalePrice());
 
@@ -69,16 +68,15 @@ public class ProductDatabase extends DatabaseManager {
 
             if (resultSet.next()) {
                 id = resultSet.getInt("id");
-                String code = resultSet.getString("code");
+                String barcode = resultSet.getString("barcode");
                 String name = resultSet.getString("name");
                 String brand = resultSet.getString("brand");
-                String units = resultSet.getString("units");
+                String unit = resultSet.getString("unit");
                 int stock = resultSet.getInt("stock");
-                float profit_margin = resultSet.getFloat("profit_margin");
                 float purchase_price = resultSet.getFloat("purchase_price");
                 float sale_price = resultSet.getFloat("sale_price");
 
-                product = new Product(id, code, name, brand, units, stock, profit_margin, purchase_price, sale_price);
+                product = new Product(id, barcode, name, brand, unit, stock, purchase_price, sale_price);
             }
             close();
         } catch (SQLException e) {
@@ -99,16 +97,15 @@ public class ProductDatabase extends DatabaseManager {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String code = resultSet.getString("code");
+                String code = resultSet.getString("barcode");
                 String name = resultSet.getString("name");
                 String brand = resultSet.getString("brand");
-                String units = resultSet.getString("units");
+                String unit = resultSet.getString("unit");
                 int stock = resultSet.getInt("stock");
-                float profit_margin = resultSet.getFloat("profit_margin");
                 float purchase_price = resultSet.getFloat("purchase_price");
                 float sale_price = resultSet.getFloat("sale_price");
 
-                product = new Product(id, code, name, brand, units, stock, profit_margin, purchase_price, sale_price);
+                product = new Product(id, code, name, brand, unit, stock, purchase_price, sale_price);
 
                 products.add(product);
             }
@@ -121,21 +118,20 @@ public class ProductDatabase extends DatabaseManager {
     }
 
     public void update(Customer customer) {
-        String updateSql = "UPDATE Product SET code = ?, name = ?, brand = ?, units = ?, stock = ?, profit_margin = ?, purchase_margin = ?, sale_price = ? WHERE id = ?";
+        String updateSql = "UPDATE Product SET barcode = ?, name = ?, brand = ?, unit = ?, stock = ?, purchase_margin = ?, sale_price = ? WHERE id = ?";
 
         try {
             login();
             PreparedStatement preparedStatement = this.connect.prepareStatement(updateSql);
 
-            preparedStatement.setString(1, product.getCode());
+            preparedStatement.setString(1, product.getBarcode());
             preparedStatement.setString(2, product.getName());
             preparedStatement.setString(3, product.getBrand());
-            preparedStatement.setString(4, product.getUnits());
+            preparedStatement.setString(4, product.getUnit());
             preparedStatement.setInt(5, product.getStock());
-            preparedStatement.setFloat(6, product.getProfitMargin());
-            preparedStatement.setFloat(7, product.getPurchasePrice());
-            preparedStatement.setFloat(8, product.getSalePrice());
-            preparedStatement.setInt(9, product.getID());
+            preparedStatement.setFloat(6, product.getPurchasePrice());
+            preparedStatement.setFloat(7, product.getSalePrice());
+            preparedStatement.setInt(8, product.getID());
 
             preparedStatement.executeUpdate();
             close();

@@ -6,13 +6,15 @@ public class Customer {
     private int ID;
     private String Name;
     private String Surname;
+    private String PhoneNumber;
     private String Address;
     private int Debit;
 
-    public Customer(int id, String name, String surname, String address, int debit) {
+    public Customer(int id, String name, String surname, String PhoneNumber, String address, int debit) {
         this.ID = id;
         this.Name = name;
         this.Surname = surname;
+        this.PhoneNumber = PhoneNumber;
         this.Address = address;
         this.Debit = debit;
     }
@@ -35,6 +37,14 @@ public class Customer {
 
     public void setSurname(String surname) {
         Surname = surname;
+    }
+
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
     }
 
     public String getAddress() {
