@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tr.cabroo.esnafapp.MainController">
    <children>
@@ -17,24 +18,31 @@
                   <Label fx:id="appname_label" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="EsnafApp" HBox.hgrow="SOMETIMES" />
                   <Button fx:id="minimize_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#minimizeApp">
                      <graphic>
+                        <FontIcon iconLiteral="fth-minimize-2" />
                      </graphic>
                   </Button>
-                  <Button fx:id="close_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#closeApp" />
+                  <Button fx:id="close_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#closeApp">
+                     <graphic>
+                        <FontIcon iconLiteral="fth-x" />
+                     </graphic></Button>
                </children>
             </HBox>
-            <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" spacing="5.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0">
                <children>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" HBox.hgrow="ALWAYS" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" HBox.hgrow="ALWAYS" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" HBox.hgrow="ALWAYS" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" HBox.hgrow="ALWAYS" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="add_transaction_button" contentDisplay="RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="İşlem Ekle" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <FontIcon iconLiteral="fth-corner-down-left" iconSize="16" text="" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="price_liste_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Fiyat Listesi [F1]" HBox.hgrow="ALWAYS" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="- [F2]" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="products_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ürünler [F3]" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="customers_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AddPaneCustomers" text="Müşteriler [F4]" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="SOMETIMES">
+            <TabPane id="anayuz" fx:id="anayuz" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="ALL_TABS" VBox.vgrow="ALWAYS">
               <tabs>
                 <Tab text="Untitled Tab 1" />
-                <Tab text="Untitled Tab 2" />
               </tabs>
             </TabPane>
          </children>

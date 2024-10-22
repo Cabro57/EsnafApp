@@ -13,7 +13,7 @@ public class CustomerDatabase extends DatabaseManager {
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + " name TEXT NOT NULL,"
                 + " surname TEXT NOT NULL,"
-                + " phone_number TEXT NOT NULL"
+                + " phone_number TEXT NOT NULL,"
                 + " address TEXT NOT NULL,"
                 + " debit INTEGER NOT NULL"
                 + ");";

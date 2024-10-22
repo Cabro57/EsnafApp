@@ -3,7 +3,7 @@ package tr.cabroo.esnafapp.database;
 import java.sql.*;
 
 public class DatabaseManager extends DatabaseConfiguration implements IDatabase {
-    protected Connection connect;
+    public Connection connect;
     //PreparedStatement preparedStatement = null;
     //Statement statement = null;
     //ResultSet resultSet = null;
@@ -12,8 +12,12 @@ public class DatabaseManager extends DatabaseConfiguration implements IDatabase 
 
         try {
             connect = DriverManager.getConnection(getDbURL());
+            if (connect != null) {
+                System.out.println("Database connected successfully!");
+            }
+
         } catch (SQLException e) {
-            System.out.println("Oops, Bu bir sorun: " + e);
+            System.out.println("Oops, Bu bir sorun: " + e.getMessage());
         }
     }
 
