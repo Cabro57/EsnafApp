@@ -14,5 +14,6 @@ module tr.cabroo.esnafapp {
 
     opens tr.cabroo.esnafapp to javafx.fxml;
     opens tr.cabroo.esnafapp.customer to javafx.fxml;
+    opens tr.cabroo.esnafapp.product to javafx.fxml;
     exports tr.cabroo.esnafapp;
 }

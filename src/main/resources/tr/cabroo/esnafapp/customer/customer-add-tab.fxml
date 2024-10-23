@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
+
 <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tr.cabroo.esnafapp.customer.CustomerAddController">
     <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
       <columnConstraints>

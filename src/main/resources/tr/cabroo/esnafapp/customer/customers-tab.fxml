@@ -31,9 +31,12 @@
         <columns>
           <TableColumn fx:id="name_surname_tablecolumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="150.0" text="Ad Soyad" />
             <TableColumn fx:id="address_tablecolumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="150.0" text="Mahalle/Köy" />
-            <TableColumn fx:id="phone_no_tablecolumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="150.0" text="Telefon No." />
-            <TableColumn fx:id="debit_tablecolumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="150.0" text="Borç" />
+            <TableColumn fx:id="phone_no_tablecolumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="154.4000244140625" text="Telefon No." />
+            <TableColumn fx:id="debit_tablecolumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="145.5999755859375" text="Borç" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </children>
 </VBox>

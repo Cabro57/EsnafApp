@@ -17,9 +17,9 @@ public class ProductDatabase extends DatabaseManager {
                 + " barcode TEXT NOT NULL,"
                 + " name TEXT NOT NULL,"
                 + " brand TEXT NOT NULL,"
-                + " unit TEXT NOT NULL"
-                + " stock INTEGER NOT NULL"
-                + " purchase_price FLOAT NOT NULL"
+                + " unit TEXT NOT NULL,"
+                + " stock INTEGER NOT NULL,"
+                + " purchase_price FLOAT NOT NULL,"
                 + " sale_price FLOAT NOT NULL"
                 + ");";
 
@@ -37,7 +37,7 @@ public class ProductDatabase extends DatabaseManager {
     }
 
     public void save(Product product) {
-        String insertSql = "INSERT INTO Customer(barcode, name, brand, unit, stock, purchase_price, sale_price) VALUES(?, ?, ?, ?, ?, ? ,?)";
+        String insertSql = "INSERT INTO Product(barcode, name, brand, unit, stock, purchase_price, sale_price) VALUES(?, ?, ?, ?, ?, ? ,?)";
 
         try {
             login();
@@ -48,8 +48,8 @@ public class ProductDatabase extends DatabaseManager {
             preparedStatement.setString(3, product.getBrand());
             preparedStatement.setString(4, product.getUnit());
             preparedStatement.setInt(5, product.getStock());
-            preparedStatement.setFloat(7, product.getPurchasePrice());
-            preparedStatement.setFloat(8, product.getSalePrice());
+            preparedStatement.setFloat(6, product.getPurchasePrice());
+            preparedStatement.setFloat(7, product.getSalePrice());
 
             preparedStatement.executeUpdate();
 
@@ -61,7 +61,7 @@ public class ProductDatabase extends DatabaseManager {
     }
 
     public Product load(int id) {
-        String selectSql = "SELECT * FROM Customer WHERE id = ?";
+        String selectSql = "SELECT * FROM Product WHERE id = ?";
         try {
             login();
             PreparedStatement preparedStatement = this.connect.prepareStatement(selectSql);
@@ -93,7 +93,7 @@ public class ProductDatabase extends DatabaseManager {
 
     public ArrayList<Product> loadAll() {
         ArrayList<Product> products = new ArrayList<>();
-        String selectSql = "SELECT * FROM Customer";  // SQL sorgusu düzeltildi
+        String selectSql = "SELECT * FROM Product";  // SQL sorgusu düzeltildi
 
         try {
             login();
@@ -125,7 +125,7 @@ public class ProductDatabase extends DatabaseManager {
     }
 
     public void update(Product product) {
-        String updateSql = "UPDATE Product SET barcode = ?, name = ?, brand = ?, unit = ?, stock = ?, purchase_margin = ?, sale_price = ? WHERE id = ?";
+        String updateSql = "UPDATE Product SET barcode = ?, name = ?, brand = ?, unit = ?, stock = ?, purchase_price = ?, sale_price = ? WHERE id = ?";
 
         try {
             login();

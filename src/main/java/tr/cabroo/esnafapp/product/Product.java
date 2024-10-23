@@ -21,6 +21,16 @@ public class Product {
         this.SalePrice = salePrice;
     }
 
+    public Product(String name, String brand, String unit, int stock, float purchasePrice, float salePrice) {
+        this.Barcode = "5";
+        this.Name = name;
+        this.Brand = brand;
+        this.Unit = unit;
+        this.Stock = stock;
+        this.PurchasePrice = purchasePrice;
+        this.SalePrice = salePrice;
+    }
+
     public int getID() {
         return ID;
     }

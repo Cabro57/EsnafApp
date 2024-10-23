@@ -44,36 +44,26 @@ public class CustomerController {
     private TableColumn<Customer, String> debit_tablecolumn;
 
     public void initialize() {
+        configureTableColumns();
+        loadCustomers();
+    }
 
-        name_surname_tablecolumn.setCellValueFactory(cellData -> {
-            Customer customer = cellData.getValue();
-            String combinedInfo = customer.getName() + " - " + customer.getSurname();
-            return new SimpleStringProperty(combinedInfo);
-        });
-        address_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("Addres"));
-        phone_no_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
-        debit_tablecolumn.setCellValueFactory(new PropertyValueFactory<>("Debit"));
+    // Tablo sütunlarını yapılandırma
+    private void configureTableColumns() {
+        name_surname_tablecolumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName() + " " + cellData.getValue().getSurname()));
+        address_tablecolumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress()));
+        phone_no_tablecolumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoneNumber()));
+        debit_tablecolumn.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getDebit())));
+    }
 
+    // Müşterileri veritabanından yükleme
+    private void loadCustomers() {
         CustomerDatabase customerdb = new CustomerDatabase();
         ArrayList<Customer> customers = customerdb.loadAll();
         if (customers != null) {
             ObservableList<Customer> customerList = FXCollections.observableArrayList(customers);
             customers_tableview.setItems(customerList);
-
         }
-    }
-
-    @FXML
-    public void AddCustomer() {
-        String name_surname = name_surname_textfield.getText();
-        String phone_no = phone_no_textfield.getText();
-        String address = address_textfield.getText();
-
-        Customer customer = new Customer(1, name_surname, name_surname, phone_no, address, 0);
-
-        new CustomerDatabase().save(customer);
-
-        System.out.println("Müşteri: " + name_surname + "\nTelefon No.: " + phone_no + "\nAdres: " + address);
     }
 
     @FXML
@@ -87,12 +77,18 @@ public class CustomerController {
             customerTab.setContent(fxmlLoader.load());
             anayuz.getTabs().add(customerTab);
             anayuz.getSelectionModel().select(customerTab);
+
+            CustomerAddController addController = fxmlLoader.getController();
+            addController.setOnCustomerAddedCallback(this::loadCustomers);
+
         } catch (IOException e) {
             System.err.println("FXML dosyası yüklenirken bir hata oluştu: " + e.getMessage());
             e.printStackTrace();
             showAlert("Hata", "Müşteri ekleme sekmesi yüklenemedi. Lütfen tekrar deneyin.");
         }
     }
+
+
 
     // Kullanıcıya bir alert göstermek için yardımcı metot
     private void showAlert(String title, String message) {

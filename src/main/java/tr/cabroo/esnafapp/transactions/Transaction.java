@@ -19,6 +19,14 @@ public class Transaction {
         this.TransactionDate = transactionDate;
     }
 
+    public Transaction(String transactionType, int customerID, int productID, int price, LocalDateTime transactionDate) {
+        this.TransactionType = transactionType;
+        this.CustomerID = customerID;
+        this.ProductID = productID;
+        this.Price = price;
+        this.TransactionDate = transactionDate;
+    }
+
     public int getID() {
         return ID;
     }

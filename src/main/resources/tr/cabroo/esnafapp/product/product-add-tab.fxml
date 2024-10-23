@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tr.cabroo.esnafapp.product.ProductAddController">
+    <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="5.0">
+      <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="25.0" prefWidth="200.0" />
+      </columnConstraints>
+      <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+        <children>
+          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="İsim:" />
+          <TextField fx:id="name_textfield" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Marka:" GridPane.rowIndex="1" />
+          <TextField fx:id="brand_textfield" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Birim:" GridPane.rowIndex="2" />
+          <TextField fx:id="unit_textfield" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Stok:" GridPane.rowIndex="3" />
+         <TextField fx:id="stock_textfield" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Alış Fiyatı:" GridPane.rowIndex="4" />
+         <TextField fx:id="purchase_price_textfield" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Satış Fiyatı:" GridPane.rowIndex="5" />
+         <TextField fx:id="sale_price_textfield" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+          <Button fx:id="add_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AddProduct" text="Ekle" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.vgrow="SOMETIMES">
+            <graphic>
+               <FontIcon iconLiteral="fth-package" />
+            </graphic>
+          </Button>
+        </children>
+    </GridPane>
+</Pane>

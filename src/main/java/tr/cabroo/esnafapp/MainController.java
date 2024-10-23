@@ -48,4 +48,64 @@ public class MainController {
         anayuz.getTabs().add(customerTab);
         anayuz.getSelectionModel().select(customerTab);
     }
+
+    @FXML
+    public void AddPaneProducts(){
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("product/products-tab.fxml"));
+        Tab productTab = new Tab("Ürünler");
+        try {
+            productTab.setContent(fxmlLoader.load());
+        } catch (IOException e) {
+            System.out.println("Oops, Bu bir hata: " + e);
+            e.printStackTrace();
+        }
+        anayuz.getTabs().add(productTab);
+        anayuz.getSelectionModel().select(productTab);
+    }
+
+    public static void findCustomersTab(TabPane anayuz, String tabTitle) {
+        boolean tabExists = false;
+        for (Tab tab : anayuz.getTabs()) {
+            if (tab.getText().equals(tabTitle)) {
+                anayuz.getSelectionModel().select(tab);
+                tabExists= true;
+                break;
+            }
+        }
+        if (!tabExists) {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("customer/customers-tab.fxml"));
+            Tab customerTab = new Tab("Müşteriler");
+            try {
+                customerTab.setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Oops, Bu bir hata: " + e);
+                e.printStackTrace();
+            }
+            anayuz.getTabs().add(customerTab);
+            anayuz.getSelectionModel().select(customerTab);
+        }
+    }
+
+    public static void findProductsTab(TabPane anayuz, String tabTitle) {
+        boolean tabExists = false;
+        for (Tab tab : anayuz.getTabs()) {
+            if (tab.getText().equals(tabTitle)) {
+                anayuz.getSelectionModel().select(tab);
+                tabExists = true;
+                break;
+            }
+        }
+        if (!tabExists) {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("product/products-tab.fxml"));
+            Tab productTab = new Tab("Ürünler");
+            try {
+                productTab.setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Oops, Bu bir hata: " + e);
+                e.printStackTrace();
+            }
+            anayuz.getTabs().add(productTab);
+            anayuz.getSelectionModel().select(productTab);
+        }
+    }
 }
